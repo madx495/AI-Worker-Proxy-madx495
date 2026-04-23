@@ -42,10 +42,16 @@ export default {
         throw new ProxyError('Unauthorized', 401, 'invalid_auth');
       }
 
-      // Chat completions — POST only
+      // Chat completions / Responses — POST only
       if (
         request.method === 'POST' &&
-        (path === '/' || path === '/v1/chat/completions' || path === '/chat/completions')
+        (
+          path === '/' ||
+          path === '/v1/chat/completions' ||
+          path === '/chat/completions' ||
+          path === '/v1/responses' ||
+          path === '/responses'
+        )
       ) {
         return handleChatCompletion(request, env);
       }
